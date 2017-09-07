@@ -26,14 +26,14 @@ module.exports.init = function() {
   });
 
   /* serve static files */
-  app.use('/', express.static(path.join('/Users/Zoe/Documents/CEN3031/Assignments/Bootcamp4/', 'client')));
+  app.use('/', express.static(__dirname + '/../../client'));
 
   /* use the listings router for requests to the api */
   app.use('/api/listings', listingsRouter);
 
-  /* go to homepage for all routes not specified */ 
-  app.get('*',function (req, res) {
-    res.redirect('/');
+  /* go to homepage for all routes not specified */
+  app.get('/*',function (req, res) {
+    res.sendFile(path.resolve('client/index.html'));
   });
 
   return app;
